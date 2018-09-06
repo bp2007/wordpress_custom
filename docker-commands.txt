@@ -1,0 +1,28 @@
+#Here are described how to run docker image pulling it from docker hub
+
+#pull the docker image
+docker pull bp2007/wordpress_custom:final
+
+#check if it is downloaded
+docker images
+
+#run the image using port forwarding as a best practise
+docker run -p 8080:80 -d bp2007/wordpress_custom:final
+####please not you need to open inbound port 8080 in your ec2 instance security group
+
+#check if image is containerized/started
+docker ps
+
+#access the webpage using your public ipv4 address along with port 8080 
+public-ipv4-address:8080
+####substitute public-ipv4-address with your actual Ec2 instance IP address
+
+#to stop instance at any time
+docker stop container-id
+####substitute container-id with actual container id you see after executing docker ps
+
+#to delete image --first stop container and delete image or it won't be deleted
+docker rmi -f bp2007/wordpress_custom
+
+#check if image is deleted
+docker images
